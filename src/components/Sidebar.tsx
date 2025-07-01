@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -18,6 +18,19 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const pathname = usePathname();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if we're on mobile
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   const menuItems = [
     {
@@ -70,6 +83,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
     },
   ];
 
+  const showText = isOpen || isMobile;
+
   const MenuItem = ({ item, isActive }: { item: any; isActive: boolean }) => (
     <Link
       href={item.href}
@@ -77,10 +92,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
         isActive
           ? "bg-blue-100 text-blue-700 border-r-2 border-blue-700"
           : "text-gray-700 hover:bg-gray-100"
-      } ${!isOpen ? "justify-center px-2" : "px-4"}`}
+      } ${!showText ? "justify-center px-2" : "px-4"}`}
     >
       <item.icon size={20} className="flex-shrink-0" />
-      {isOpen && (
+      {showText && (
         <span className="ml-3 transition-opacity duration-200">
           {item.title}
         </span>
@@ -89,14 +104,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   );
 
   return (
-    <div className="bg-white shadow-lg h-full flex flex-col">
+    <div className="bg-white shadow-lg h-full flex flex-col w-64 lg:w-auto">
       {/* Logo */}
       <div className="flex items-center justify-center p-6 border-b border-gray-200">
         <div className="flex items-center">
           <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
             <span className="text-white font-bold text-sm">A</span>
           </div>
-          {isOpen && (
+          {showText && (
             <span className="ml-2 font-bold text-gray-800 transition-opacity duration-200">
               ADMINTO
             </span>
@@ -105,7 +120,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
       </div>
 
       {/* User Profile */}
-      {isOpen && (
+      {showText && (
         <div className="flex flex-col items-center p-6 border-b border-gray-200 transition-all duration-200">
           <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center mb-3">
             <User size={24} className="text-gray-600" />
@@ -132,7 +147,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
         {/* Registrations */}
         <div>
-          {isOpen && (
+          {showText && (
             <h3 className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 transition-opacity duration-200">
               Registrations
             </h3>
@@ -150,7 +165,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
         {/* Help */}
         <div>
-          {isOpen && (
+          {showText && (
             <h3 className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 transition-opacity duration-200">
               Help
             </h3>

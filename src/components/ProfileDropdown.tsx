@@ -58,14 +58,14 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ credentials }) => {
       {/* Dropdown Toggle */}
       <button
         onClick={toggleDropdown}
-        className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="flex items-center space-x-2 lg:space-x-3 p-2 rounded-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         {/* User Avatar */}
-        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+        <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
           <User size={16} className="text-white" />
         </div>
 
-        {/* User Info */}
+        {/* User Info - Hidden on mobile */}
         <div className="hidden lg:flex flex-col items-start">
           <span className="text-sm font-medium text-gray-700">{userName}</span>
           <span className="text-xs text-gray-500 truncate max-w-32">
@@ -73,10 +73,10 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ credentials }) => {
           </span>
         </div>
 
-        {/* Chevron */}
+        {/* Chevron - Hidden on mobile */}
         <ChevronDown
           size={16}
-          className={`text-gray-400 transition-transform duration-200 ${
+          className={`hidden lg:block text-gray-400 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
