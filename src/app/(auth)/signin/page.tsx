@@ -146,23 +146,18 @@ export default function SignInPage() {
         initial="hidden"
         animate="visible"
       >
-        {/* Welcome Text */}
         <motion.div
           className="text-[#5B7086] font-medium"
           variants={slideInFromLeft}
         >
           WELCOME!
         </motion.div>
-
-        {/* Main Title */}
         <motion.div
           className="text-[3rem] font-semibold mb-6"
           variants={itemVariants}
         >
           Log into your account.
         </motion.div>
-
-        {/* Register link */}
         <motion.div className="text-[#5B7086] mb-10" variants={slideInFromLeft}>
           Don't have an account?{" "}
           <Link
@@ -172,8 +167,6 @@ export default function SignInPage() {
             Register
           </Link>
         </motion.div>
-
-        {/* Form */}
         <motion.form
           className="space-y-4 w-full max-w-lg mb-12"
           onSubmit={handleSubmit}
@@ -185,20 +178,18 @@ export default function SignInPage() {
               type="email"
               value={credentials.email}
               onChange={handleEmailChange}
-              // error={fieldErrors.email}
+              error={fieldErrors.email}
             />
           </motion.div>
-
           <motion.div variants={itemVariants}>
             <GradientHoverTextField
               label="Your password"
               type="password"
               value={credentials.password}
               onChange={handlePasswordChange}
-              // error={fieldErrors.password}
+              error={fieldErrors.password}
             />
           </motion.div>
-
           {error && (
             <motion.div
               className="text-red-600 text-sm"
@@ -208,15 +199,13 @@ export default function SignInPage() {
             </motion.div>
           )}
         </motion.form>
-
-        {/* Bottom Section */}
         <motion.div
           className="flex items-center justify-end"
           variants={slideInFromRight}
         >
           <Link
             href="/forgot-password"
-            className="font-light mr-6 text-[#5B7086] hover:text-blue-500 hover:underline transition-colors duration-200"
+            className="font-light mr-6 text-[#5B7086] hovexr:text-blue-500 hover:underline transition-colors duration-200"
           >
             Forgot Password?
           </Link>
