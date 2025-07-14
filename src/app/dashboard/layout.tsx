@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, Search, Bell, Settings, Moon } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
-import ProfileDropdown from "@/components/ProfileDropdown";
+import Header from "@/components/Header";
 import { AuthCredentials } from "../../../type/auth";
 import { getStoredCredentials } from "../../../utils/auth";
 
@@ -143,64 +142,15 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       </div>
 
       {/* Main Content */}
-      <div
-        className={`flex-1 flex flex-col overflow-hidden ${
-          !isMobile && !isSidebarOpen ? "" : ""
-        }`}
-      >
-        {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 px-4 lg:px-6 py-4 flex-shrink-0">
-          <div className="flex items-center justify-between">
-            {/* Left side */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={toggleSidebar}
-                className="p-2 rounded-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-                aria-label="Toggle sidebar"
-              >
-                {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-
-              {/* Page title - hidden on mobile */}
-              <h1 className="hidden md:block text-xl font-semibold text-gray-800">
-                {getPageTitle()}
-              </h1>
-            </div>
-
-            {/* Right side */}
-            <div className="flex items-center space-x-2 lg:space-x-4">
-              {/* Search - hidden on mobile */}
-              <div className="hidden lg:block relative">
-                <Search
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                  size={16}
-                />
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-
-              {/* Desktop-only icons */}
-              <button className="hidden lg:flex p-2 rounded-md hover:bg-gray-100 transition-colors">
-                <Bell size={20} className="text-gray-600" />
-              </button>
-
-              <button className="hidden lg:flex p-2 rounded-md hover:bg-gray-100 transition-colors">
-                <Settings size={20} className="text-gray-600" />
-              </button>
-
-              {/* Moon icon - always visible */}
-              <button className="p-2 rounded-md hover:bg-gray-100 transition-colors">
-                <Moon size={20} className="text-gray-600" />
-              </button>
-
-              {/* User profile dropdown - always visible */}
-              <ProfileDropdown credentials={credentials} />
-            </div>
-          </div>
-        </header>
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header Component */}
+        <Header
+          isSidebarOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+          pageTitle={getPageTitle()}
+          credentials={credentials}
+          isMobile={isMobile}
+        />
 
         {/* Page Content */}
         <main className="flex-1 overflow-y-auto bg-gray-50">

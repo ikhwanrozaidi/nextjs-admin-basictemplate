@@ -32,8 +32,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
 
   const getPageTitle = () => {
     switch (pathname) {
-      case "/dashboard":
-        return "Dashboard";
+      case "/draft":
+        return "Draftboard";
       case "/draft/order-history":
         return "Order History";
       case "/dashboard/messages":

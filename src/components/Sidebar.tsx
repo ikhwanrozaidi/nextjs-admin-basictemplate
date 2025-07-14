@@ -90,7 +90,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
       href={item.href}
       className={`flex items-center py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
         isActive
-          ? "bg-blue-100 text-blue-700 border-r-2 border-blue-700"
+          ? "bg-blue-100 text-blue-700 border-r- border-blue-700"
           : "text-gray-700 hover:bg-gray-100"
       } ${!showText ? "justify-center px-2" : "px-4"}`}
     >
@@ -109,11 +109,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
       <div className="flex items-center justify-center p-6 border-b border-gray-200">
         <div className="flex items-center">
           <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-sm">A</span>
+            <span className="text-white font-bold text-sm">AD</span>
           </div>
           {showText && (
             <span className="ml-2 font-bold text-gray-800 transition-opacity duration-200">
-              ADMINTO
+              ADMINDASH
             </span>
           )}
         </div>

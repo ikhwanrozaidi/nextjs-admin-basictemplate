@@ -1,8 +1,9 @@
-// app/dashboard/page.tsx
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      {/* Welcome Card */}
+      {/* <div className="flex bg-white">
+        <Stat />
+      </div> */}
       <div className="bg-white rounded-lg shadow p-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           Welcome to your Dashboard!
